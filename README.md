@@ -6,7 +6,7 @@ SeekArc
 So what the heck is a SeekArc? Essentially it’s a SeekBar that has been wrapped around a circle. It acts like a SeekBar and generally has the same settings. You can even add a Listener to it as you would with a SeekBar. So if its in a circle why not call it a SeekCircle? The answer is that the SeekArc does have a few more setting than the SeekBar one of these is the sweepAngle, which means that the SeekArc doesn’t have to be drawn as a full circle, and can be drawn as a circle, semi-circle  or quarter arc or whatever you like.
 
 <div align="center">
-  <img height="400px" src="https://raw.github.com/neild001/SeekArc/tree/master/raw/arc_sweeps.png"/>
+  <img height="400px" src="https://github.com/neild001/SeekArc/blob/master/raw/arc_sweeps.png"/>
 </div>
 
 ### Sample Project
@@ -14,7 +14,7 @@ So what the heck is a SeekArc? Essentially it’s a SeekBar that has been wrappe
 You can see the SeekArc working in the sample application. Just check out the library and sample application as two separate projects and import them into eclipse. Make sure that the Sample app is setup to correctly use the library project. The sample app will let you explore the attributes that can be set on the SeekArc
 
 <div align="center">
-  <img height="400px" src="https://raw.github.com/neild001/SeekArc/tree/master/raw/sample_app.png"/>
+  <img height="400px" src="https://github.com/neild001/SeekArc/blob/master/raw/sample_app.png"/>
 </div>
 
 ### Using the SeekArc
