@@ -23,11 +23,11 @@ Using the SeekArc is straightforward. There are a number of settings from sweep 
 
 To help with understanding how to use the SeeekArc I’ve put together a sample app with a number of controls that can be used to adjust the attributes of the SeekArc. This is by far the best way to get a good understanding of how to use the SeekArc. From the sample app you’ll see that it is possible to set attributes such as:
 
-Sweep angle
-Rotation
-Clockwise, (which way do you want the progress to increase clockwise/anticlockwise)
-Arc and progress width
-Rounded corners
+Sweep angle,
+Rotation,
+Clockwise, (which way do you want the progress to increase clockwise/anticlockwise),
+Arc and progress width,
+Rounded corners and 
 Touch inside enable/disable.
 
 
