@@ -33,7 +33,7 @@ Touch inside enable/disable.
 ## Video
 
 
-[![Sample Video](http://i.ytimg.com/vi/MefE7mjM94M/2.jpg)](http://www.youtube.com/watch?v=MefE7mjM94M)
+[![Sample Video](https://raw.github.com/neild001/SeekArc/master/raw/Holo_light.png)](http://www.youtube.com/watch?v=MefE7mjM94M)
 
 
 ### To use it in your code
