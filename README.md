@@ -30,6 +30,11 @@ Arc and progress width,
 Rounded corners and 
 Touch inside enable/disable.
 
+## Video
+
+
+[![Sample Video](http://i.ytimg.com/vi/MefE7mjM94M/2.jpg)](http://www.youtube.com/watch?v=MefE7mjM94M)
+
 
 ### To use it in your code
 
@@ -45,6 +50,8 @@ Simply add the View to your Layout
             seekarc:startAngle="30"
             seekarc:sweepAngle="300"
             seekarc:touchInside="true" />
+
+
 
 ### License
 
