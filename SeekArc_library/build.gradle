@@ -8,12 +8,11 @@ buildscript {
     }
 }
 
-apply plugin: 'android'
+apply plugin: 'android-library'
 
 
 dependencies {
     compile files('libs/android-support-v4.jar')
-    compile project(':SeekArc_library')
 }
 
 android {
@@ -32,8 +31,5 @@ android {
 
         instrumentTest.setRoot('tests')
     }
-
-    lintOptions {
-          abortOnError false
-    }
 }
+
