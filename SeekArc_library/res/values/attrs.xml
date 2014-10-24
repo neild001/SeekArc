@@ -38,6 +38,7 @@
         <attr name="roundEdges" format="boolean" />
         <attr name="touchInside" format="boolean" />
         <attr name="clockwise" format="boolean" />
+        <attr name="touchable" format="boolean" />
     </declare-styleable>
     
     <declare-styleable name="SeekArcTheme">
