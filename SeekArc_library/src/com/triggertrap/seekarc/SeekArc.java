@@ -39,8 +39,8 @@ import android.view.View;
  * 
  * SeekArc.java
  * 
- * This is a class that functions much like a SeekBar but
- * follows a circle path instead of a straight line.
+ * This is a class that functions much like a SeekBar but follows a circle path
+ * instead of a straight line.
  * 
  * @author Neil Davies
  * 
@@ -56,52 +56,52 @@ public class SeekArc extends View {
 	 * The Drawable for the seek arc thumbnail
 	 */
 	private Drawable mThumb;
-	
+
 	/**
 	 * The Maximum value that this SeekArc can be set to
 	 */
 	private int mMax = 100;
-	
+
 	/**
 	 * The Current value that the SeekArc is set to
 	 */
 	private int mProgress = 0;
-		
+
 	/**
 	 * The width of the progress line for this SeekArc
 	 */
 	private int mProgressWidth = 4;
-	
+
 	/**
-	 * The Width of the background arc for the SeekArc 
+	 * The Width of the background arc for the SeekArc
 	 */
 	private int mArcWidth = 2;
-	
+
 	/**
 	 * The Angle to start drawing this Arc from
 	 */
 	private int mStartAngle = 0;
-	
+
 	/**
 	 * The Angle through which to draw the arc (Max is 360)
 	 */
 	private int mSweepAngle = 360;
-	
+
 	/**
 	 * The rotation of the SeekArc- 0 is twelve o'clock
 	 */
 	private int mRotation = 0;
-	
+
 	/**
 	 * Give the SeekArc rounded edges
 	 */
 	private boolean mRoundedEdges = false;
-	
+
 	/**
 	 * Enable touch inside the SeekArc
 	 */
 	private boolean mTouchInside = true;
-	
+
 	/**
 	 * Will the progress increase clockwise or anti-clockwise
 	 */
@@ -120,6 +120,8 @@ public class SeekArc extends View {
 	private double mTouchAngle;
 	private float mTouchIgnoreRadius;
 	private OnSeekArcChangeListener mOnSeekArcChangeListener;
+	// is the control toucale
+	private boolean mTouchable = true;
 
 	public interface OnSeekArcChangeListener {
 
@@ -189,7 +191,6 @@ public class SeekArc extends View {
 		// Convert progress width to pixels for current density
 		mProgressWidth = (int) (mProgressWidth * density);
 
-		
 		if (attrs != null) {
 			// Attribute initialization
 			final TypedArray a = context.obtainStyledAttributes(attrs,
@@ -200,8 +201,6 @@ public class SeekArc extends View {
 				mThumb = thumb;
 			}
 
-			
-			
 			thumbHalfheight = (int) mThumb.getIntrinsicHeight() / 2;
 			thumbHalfWidth = (int) mThumb.getIntrinsicWidth() / 2;
 			mThumb.setBounds(-thumbHalfWidth, -thumbHalfheight, thumbHalfWidth,
@@ -220,9 +219,11 @@ public class SeekArc extends View {
 					mRoundedEdges);
 			mTouchInside = a.getBoolean(R.styleable.SeekArc_touchInside,
 					mTouchInside);
-			mClockwise = a.getBoolean(R.styleable.SeekArc_clockwise,
-					mClockwise);
-			
+			mClockwise = a
+					.getBoolean(R.styleable.SeekArc_clockwise, mClockwise);
+
+			mTouchable = a
+					.getBoolean(R.styleable.SeekArc_touchable, mTouchable);
 			arcColor = a.getColor(R.styleable.SeekArc_arcColor, arcColor);
 			progressColor = a.getColor(R.styleable.SeekArc_progressColor,
 					progressColor);
@@ -244,7 +245,7 @@ public class SeekArc extends View {
 		mArcPaint.setAntiAlias(true);
 		mArcPaint.setStyle(Paint.Style.STROKE);
 		mArcPaint.setStrokeWidth(mArcWidth);
-		//mArcPaint.setAlpha(45);
+		// mArcPaint.setAlpha(45);
 
 		mProgressPaint = new Paint();
 		mProgressPaint.setColor(progressColor);
@@ -259,11 +260,11 @@ public class SeekArc extends View {
 	}
 
 	@Override
-	protected void onDraw(Canvas canvas) {		
-		if(!mClockwise) {
-			canvas.scale(-1, 1, mArcRect.centerX(), mArcRect.centerY() );
+	protected void onDraw(Canvas canvas) {
+		if (!mClockwise) {
+			canvas.scale(-1, 1, mArcRect.centerX(), mArcRect.centerY());
 		}
-		
+
 		// Draw the arcs
 		final int arcStart = mStartAngle + mAngleOffset + mRotation;
 		final int arcSweep = mSweepAngle;
@@ -272,10 +273,9 @@ public class SeekArc extends View {
 				mProgressPaint);
 
 		// Draw the thumb nail
-		canvas.translate(mTranslateX -mThumbXPos, mTranslateY -mThumbYPos);
-		mThumb.draw(canvas);		
+		canvas.translate(mTranslateX - mThumbXPos, mTranslateY - mThumbYPos);
+		mThumb.draw(canvas);
 	}
-
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -291,42 +291,43 @@ public class SeekArc extends View {
 
 		mTranslateX = (int) (width * 0.5f);
 		mTranslateY = (int) (height * 0.5f);
-		
+
 		arcDiameter = min - getPaddingLeft();
 		mArcRadius = arcDiameter / 2;
 		top = height / 2 - (arcDiameter / 2);
 		left = width / 2 - (arcDiameter / 2);
 		mArcRect.set(left, top, left + arcDiameter, top + arcDiameter);
-	
-		int arcStart = (int)mProgressSweep + mStartAngle  + mRotation + 90;
+
+		int arcStart = (int) mProgressSweep + mStartAngle + mRotation + 90;
 		mThumbXPos = (int) (mArcRadius * Math.cos(Math.toRadians(arcStart)));
 		mThumbYPos = (int) (mArcRadius * Math.sin(Math.toRadians(arcStart)));
-		
+
 		setTouchInSide(mTouchInside);
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			onStartTrackingTouch();
-			updateOnTouch(event);
-			break;
-		case MotionEvent.ACTION_MOVE:
-			updateOnTouch(event);
-			break;
-		case MotionEvent.ACTION_UP:
-			onStopTrackingTouch();
-			setPressed(false);
-			break;
-		case MotionEvent.ACTION_CANCEL:
-			onStopTrackingTouch();
-			setPressed(false);
+		if (mTouchable) {
+			switch (event.getAction()) {
+			case MotionEvent.ACTION_DOWN:
+				onStartTrackingTouch();
+				updateOnTouch(event);
+				break;
+			case MotionEvent.ACTION_MOVE:
+				updateOnTouch(event);
+				break;
+			case MotionEvent.ACTION_UP:
+				onStopTrackingTouch();
+				setPressed(false);
+				break;
+			case MotionEvent.ACTION_CANCEL:
+				onStopTrackingTouch();
+				setPressed(false);
 
-			break;
+				break;
+			}
 		}
-
 		return true;
 	}
 
@@ -378,8 +379,8 @@ public class SeekArc extends View {
 	private double getTouchDegrees(float xPos, float yPos) {
 		float x = xPos - mTranslateX;
 		float y = yPos - mTranslateY;
-		//invert the x-coord if we are rotating anti-clockwise
-		x= (mClockwise) ? x:-x;
+		// invert the x-coord if we are rotating anti-clockwise
+		x = (mClockwise) ? x : -x;
 		// convert to arc Angle
 		double angle = Math.toDegrees(Math.atan2(y, x) + (Math.PI / 2)
 				- Math.toRadians(mRotation));
@@ -413,7 +414,7 @@ public class SeekArc extends View {
 		mThumbXPos = (int) (mArcRadius * Math.cos(Math.toRadians(thumbAngle)));
 		mThumbYPos = (int) (mArcRadius * Math.sin(Math.toRadians(thumbAngle)));
 	}
-	
+
 	private void updateProgress(int progress, boolean fromUser) {
 
 		if (progress == INVALID_PROGRESS_VALUE) {
@@ -462,7 +463,7 @@ public class SeekArc extends View {
 		this.mProgressWidth = mProgressWidth;
 		mProgressPaint.setStrokeWidth(mProgressWidth);
 	}
-	
+
 	public int getArcWidth() {
 		return mArcWidth;
 	}
@@ -471,6 +472,7 @@ public class SeekArc extends View {
 		this.mArcWidth = mArcWidth;
 		mArcPaint.setStrokeWidth(mArcWidth);
 	}
+
 	public int getArcRotation() {
 		return mRotation;
 	}
@@ -478,6 +480,32 @@ public class SeekArc extends View {
 	public void setArcRotation(int mRotation) {
 		this.mRotation = mRotation;
 		updateThumbPosition();
+	}
+
+	public int getProgressColor() {
+		return mProgressPaint.getColor();
+	}
+
+	public void setProgressColor(int color) {
+		mProgressPaint.setColor(color);
+		invalidate();
+	}
+
+	public boolean isTouchable() {
+		return mTouchable;
+	}
+
+	public void setTouchable(boolean mTouchable) {
+		this.mTouchable = mTouchable;
+	}
+
+	public int getArcColor() {
+		return mArcPaint.getColor();
+	}
+
+	public void setArcColor(int color) {
+		mArcPaint.setColor(color);
+		invalidate();
 	}
 
 	public int getStartAngle() {
@@ -497,7 +525,7 @@ public class SeekArc extends View {
 		this.mSweepAngle = mSweepAngle;
 		updateThumbPosition();
 	}
-	
+
 	public void setRoundedEdges(boolean isEnabled) {
 		mRoundedEdges = isEnabled;
 		if (mRoundedEdges) {
@@ -508,7 +536,7 @@ public class SeekArc extends View {
 			mProgressPaint.setStrokeCap(Paint.Cap.SQUARE);
 		}
 	}
-	
+
 	public void setTouchInSide(boolean isEnabled) {
 		int thumbHalfheight = (int) mThumb.getIntrinsicHeight() / 2;
 		int thumbHalfWidth = (int) mThumb.getIntrinsicWidth() / 2;
@@ -521,7 +549,7 @@ public class SeekArc extends View {
 					- Math.min(thumbHalfWidth, thumbHalfheight);
 		}
 	}
-	
+
 	public void setClockwise(boolean isClockwise) {
 		mClockwise = isClockwise;
 	}
