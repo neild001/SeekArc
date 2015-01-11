@@ -419,16 +419,16 @@ public class SeekArc extends View {
 		if (progress == INVALID_PROGRESS_VALUE) {
 			return;
 		}
+		
+		progress = (progress > mMax) ? mMax : progress;
+		progress = (mProgress < 0) ? 0 : progress;
+		mProgress = progress;
 
 		if (mOnSeekArcChangeListener != null) {
 			mOnSeekArcChangeListener
 					.onProgressChanged(this, progress, fromUser);
 		}
 
-		progress = (progress > mMax) ? mMax : progress;
-		progress = (mProgress < 0) ? 0 : progress;
-
-		mProgress = progress;
 		mProgressSweep = (float) progress / mMax * mSweepAngle;
 
 		updateThumbPosition();
