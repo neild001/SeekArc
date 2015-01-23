@@ -320,11 +320,6 @@ public class SeekArc extends View {
 			onStopTrackingTouch();
 			setPressed(false);
 			break;
-		case MotionEvent.ACTION_CANCEL:
-			onStopTrackingTouch();
-			setPressed(false);
-
-			break;
 		}
 
 		return true;
