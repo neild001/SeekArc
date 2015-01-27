@@ -308,6 +308,8 @@ public class SeekArc extends View {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		this.getParent().requestDisallowInterceptTouchEvent(true);
+
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			onStartTrackingTouch();
@@ -319,11 +321,12 @@ public class SeekArc extends View {
 		case MotionEvent.ACTION_UP:
 			onStopTrackingTouch();
 			setPressed(false);
+			this.getParent().requestDisallowInterceptTouchEvent(false);
 			break;
 		case MotionEvent.ACTION_CANCEL:
 			onStopTrackingTouch();
 			setPressed(false);
-
+			this.getParent().requestDisallowInterceptTouchEvent(false);
 			break;
 		}
 
