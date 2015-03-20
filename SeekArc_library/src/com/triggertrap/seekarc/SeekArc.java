@@ -426,7 +426,7 @@ public class SeekArc extends View {
 		}
 
 		progress = (progress > mMax) ? mMax : progress;
-		progress = (mProgress < 0) ? 0 : progress;
+		progress = (progress < 0) ? 0 : progress;
 
 		mProgress = progress;
 		mProgressSweep = (float) progress / mMax * mSweepAngle;
