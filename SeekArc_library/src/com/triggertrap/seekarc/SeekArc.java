@@ -107,6 +107,12 @@ public class SeekArc extends View {
 	 */
 	private boolean mClockwise = true;
 
+
+	/**
+	 * is the control enabled/touchable
+ 	 */
+	private boolean mEnabled = true;
+
 	// Internal variables
 	private int mArcRadius = 0;
 	private float mProgressSweep = 0;
@@ -222,7 +228,8 @@ public class SeekArc extends View {
 					mTouchInside);
 			mClockwise = a.getBoolean(R.styleable.SeekArc_clockwise,
 					mClockwise);
-			
+			mEnabled = a.getBoolean(R.styleable.SeekArc_enabled, mEnabled);
+
 			arcColor = a.getColor(R.styleable.SeekArc_arcColor, arcColor);
 			progressColor = a.getColor(R.styleable.SeekArc_progressColor,
 					progressColor);
@@ -271,9 +278,11 @@ public class SeekArc extends View {
 		canvas.drawArc(mArcRect, arcStart, mProgressSweep, false,
 				mProgressPaint);
 
-		// Draw the thumb nail
-		canvas.translate(mTranslateX -mThumbXPos, mTranslateY -mThumbYPos);
-		mThumb.draw(canvas);		
+		if(mEnabled) {
+			// Draw the thumb nail
+			canvas.translate(mTranslateX - mThumbXPos, mTranslateY - mThumbYPos);
+			mThumb.draw(canvas);
+		}
 	}
 
 
@@ -308,26 +317,31 @@ public class SeekArc extends View {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			onStartTrackingTouch();
-			updateOnTouch(event);
-			break;
-		case MotionEvent.ACTION_MOVE:
-			updateOnTouch(event);
-			break;
-		case MotionEvent.ACTION_UP:
-			onStopTrackingTouch();
-			setPressed(false);
-			break;
-		case MotionEvent.ACTION_CANCEL:
-			onStopTrackingTouch();
-			setPressed(false);
+		if (mEnabled) {
+			this.getParent().requestDisallowInterceptTouchEvent(true);
 
-			break;
+			switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					onStartTrackingTouch();
+					updateOnTouch(event);
+					break;
+				case MotionEvent.ACTION_MOVE:
+					updateOnTouch(event);
+					break;
+				case MotionEvent.ACTION_UP:
+					onStopTrackingTouch();
+					setPressed(false);
+					this.getParent().requestDisallowInterceptTouchEvent(false);
+					break;
+				case MotionEvent.ACTION_CANCEL:
+					onStopTrackingTouch();
+					setPressed(false);
+					this.getParent().requestDisallowInterceptTouchEvent(false);
+					break;
+			}
+			return true;
 		}
-
-		return true;
+		return false;
 	}
 
 	@Override
@@ -529,4 +543,35 @@ public class SeekArc extends View {
 	public void setClockwise(boolean isClockwise) {
 		mClockwise = isClockwise;
 	}
+
+	public boolean isClockwise() {
+		return mClockwise;
+	}
+
+	public boolean isEnabled() {
+		return mEnabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.mEnabled = enabled;
+	}
+
+	public int getProgressColor() {
+		return mProgressPaint.getColor();
+	}
+
+	public void setProgressColor(int color) {
+		mProgressPaint.setColor(color);
+		invalidate();
+	}
+
+	public int getArcColor() {
+		return mArcPaint.getColor();
+	}
+
+	public void setArcColor(int color) {
+		mArcPaint.setColor(color);
+		invalidate();
+	}
+
 }
