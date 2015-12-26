@@ -49,6 +49,16 @@
             android:name="com.triggertrap.sample.SimpleActivity"
             android:label="@string/title_activity_simple" >
         </activity>
+
+        <activity
+            android:name="com.triggertrap.sample.ScrollViewActivity"
+            android:label="@string/title_activity_scrollview" >
+        </activity>
+
+        <activity
+            android:name="com.triggertrap.sample.DisabledActivity"
+            android:label="@string/title_activity_disabled" >
+        </activity>
         <activity
             android:name="com.triggertrap.sample.CustomActivity"
             android:label="@string/title_activity_custom" >
