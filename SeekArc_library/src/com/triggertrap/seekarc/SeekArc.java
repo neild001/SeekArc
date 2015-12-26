@@ -182,7 +182,7 @@ public class SeekArc extends View {
 
 		// Defaults, may need to link this into theme settings
 		int arcColor = res.getColor(R.color.progress_gray);
-		int progressColor = res.getColor(android.R.color.holo_blue_light);
+		int progressColor = res.getColor(R.color.default_blue_light);
 		int thumbHalfheight = 0;
 		int thumbHalfWidth = 0;
 		mThumb = res.getDrawable(R.drawable.seek_arc_control_selector);
