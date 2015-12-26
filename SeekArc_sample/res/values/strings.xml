@@ -24,16 +24,18 @@
 -->
 <resources>
 
-    <string name="app_name">SeekArc_sample</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">SeekArc Sample</string>
 
     <string-array name="items">
-        <item>Simple Holo theme</item>
-        <item>Custom style</item>
+        <item>@string/title_activity_simple</item>
+        <item>@string/title_activity_custom</item>
+        <item>@string/title_activity_scrollview</item>
+        <item>@string/title_activity_disabled</item>
     </string-array>
 
-    <string name="title_activity_simple">SimpleActivity</string>
-    <string name="title_activity_custom">CustomActivity</string>
+    <string name="title_activity_simple">SeekArc (default)</string>
+    <string name="title_activity_custom">Custom style</string>
+    <string name="title_activity_scrollview">In scrollview</string>
+    <string name="title_activity_disabled">Disabled (read only)</string>
 
 </resources>

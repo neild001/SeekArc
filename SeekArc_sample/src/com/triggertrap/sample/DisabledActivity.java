@@ -23,18 +23,32 @@
  ******************************************************************************/
 package com.triggertrap.sample;
 
-/**
- * 
- * CustomActivity.java
- * @author Neil Davies
- * 
- */
-public class CustomActivity extends SimpleActivity {
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
 
+import com.triggertrap.seekarc.SeekArc;
+
+/**
+ * Sample to show seekarc in readonly state and setting progress/arc colors programmatically
+ */
+public class DisabledActivity extends Activity {
 
 	@Override
-	protected int getLayoutFile() {
-		return R.layout.custom_sample;
-	}
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_disabled);
 
+		SeekArc seekArcComplete = (SeekArc) findViewById(R.id.seekArcComplete);
+		SeekArc seekArcWarning = (SeekArc) findViewById(R.id.seekArcWarning);
+
+		seekArcComplete.setProgressColor(Color.parseColor("#22FF22"));
+		//seekArcComplete.setProgress(99);
+
+		seekArcWarning.setProgressColor(Color.parseColor("#FF2222"));
+		seekArcWarning.setArcColor(Color.parseColor("#c2c2c2"));
+		//seekArcWarning.setProgress(33);
+
+	}
+	
 }

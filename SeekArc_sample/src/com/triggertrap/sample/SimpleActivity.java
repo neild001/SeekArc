@@ -52,11 +52,16 @@ public class SimpleActivity extends Activity {
 	private CheckBox mTouchInside;
 	private CheckBox mClockwise;
 	private TextView mSeekArcProgress;
-	
+	private CheckBox mEnabled;
+
+	protected int getLayoutFile(){
+		return R.layout.holo_sample;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.holo_sample);
+		setContentView(getLayoutFile());
 		
 		mSeekArc = (SeekArc) findViewById(R.id.seekArc);
 		mSeekArcProgress = (TextView) findViewById(R.id.seekArcProgress);
@@ -68,7 +73,8 @@ public class SimpleActivity extends Activity {
 		mRoundedEdges = (CheckBox) findViewById(R.id.roundedEdges);
 		mTouchInside = (CheckBox) findViewById(R.id.touchInside);
 		mClockwise = (CheckBox) findViewById(R.id.clockwise);
-		
+		mEnabled = (CheckBox) findViewById(R.id.enabled);
+
 		mRotation.setProgress(mSeekArc.getArcRotation());
 		mStartAngle.setProgress(mSeekArc.getStartAngle());
 		mSweepAngle.setProgress(mSeekArc.getSweepAngle());
@@ -76,17 +82,18 @@ public class SimpleActivity extends Activity {
 		mProgressWidth.setProgress(mSeekArc.getProgressWidth());
 		
 		mSeekArc.setOnSeekArcChangeListener(new OnSeekArcChangeListener() {
-			
+
 			@Override
-			public void onStopTrackingTouch(SeekArc seekArc) {	
-			}		
+			public void onStopTrackingTouch(SeekArc seekArc) {
+			}
+
 			@Override
 			public void onStartTrackingTouch(SeekArc seekArc) {
 			}
-			
+
 			@Override
 			public void onProgressChanged(SeekArc seekArc, int progress,
-					boolean fromUser) {
+										  boolean fromUser) {
 				mSeekArcProgress.setText(String.valueOf(progress));
 			}
 		});
@@ -95,11 +102,12 @@ public class SimpleActivity extends Activity {
 			@Override
 			public void onStopTrackingTouch(SeekBar arg0) {
 
-			}		
-			@Override
-			public void onStartTrackingTouch(SeekBar arg0) {		
 			}
-			
+
+			@Override
+			public void onStartTrackingTouch(SeekBar arg0) {
+			}
+
 			@Override
 			public void onProgressChanged(SeekBar view, int progress, boolean fromUser) {
 				mSeekArc.setArcRotation(progress);
@@ -172,11 +180,11 @@ public class SimpleActivity extends Activity {
 		});
 		
 		mRoundedEdges.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			   @Override
-			   public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-				   mSeekArc.setRoundedEdges(isChecked);
-				   mSeekArc.invalidate();
-			   }
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				mSeekArc.setRoundedEdges(isChecked);
+				mSeekArc.invalidate();
+			}
 		});
 		
 		mTouchInside.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -192,6 +200,14 @@ public class SimpleActivity extends Activity {
 				   mSeekArc.setClockwise(isChecked);
 				   mSeekArc.invalidate();
 			   }
+		});
+
+		mEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				mSeekArc.setEnabled(isChecked);
+				mSeekArc.invalidate();
+			}
 		});
 		
 	}

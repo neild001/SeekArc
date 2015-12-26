@@ -46,16 +46,13 @@ public class MainActivity extends ListActivity {
 		String [] items = getResources().getStringArray(R.array.items);
 		setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, items));
-		
-		
 	}
-	
+
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-			Intent intent;
-			switch (position) {
+		Intent intent;
+		switch (position) {
 			case 0:
-				//Start Activity for holo view
 				intent = new Intent(this, SimpleActivity.class);
 				startActivity(intent);
 				break;
@@ -63,7 +60,15 @@ public class MainActivity extends ListActivity {
 				intent = new Intent(this, CustomActivity.class);
 				startActivity(intent);
 				break;
-			}
+			case 2:
+				intent = new Intent(this, ScrollViewActivity.class);
+				startActivity(intent);
+				break;
+			case 3:
+				intent = new Intent(this, DisabledActivity.class);
+				startActivity(intent);
+				break;
+		}
 	}
 
 }
