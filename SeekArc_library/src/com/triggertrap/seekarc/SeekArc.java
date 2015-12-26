@@ -243,6 +243,8 @@ public class SeekArc extends View {
 		mSweepAngle = (mSweepAngle > 360) ? 360 : mSweepAngle;
 		mSweepAngle = (mSweepAngle < 0) ? 0 : mSweepAngle;
 
+		mProgressSweep = (float) mProgress / mMax * mSweepAngle;
+
 		mStartAngle = (mStartAngle > 360) ? 0 : mStartAngle;
 		mStartAngle = (mStartAngle < 0) ? 0 : mStartAngle;
 
