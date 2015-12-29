@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.triggertrap.seekarc.sample"
-        minSdkVersion 16
+        minSdkVersion 8
         targetSdkVersion 23
         versionCode 2
         versionName "1.0.1"
