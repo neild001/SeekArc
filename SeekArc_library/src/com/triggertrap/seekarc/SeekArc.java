@@ -576,4 +576,11 @@ public class SeekArc extends View {
 		invalidate();
 	}
 
+	public int getMax() {
+		return mMax;
+	}
+
+	public void setMax(int mMax) {
+		this.mMax = mMax;
+	}
 }
