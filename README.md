@@ -3,11 +3,13 @@ SeekArc
 
 # What is a SeekArc?
 
-So what the heck is a SeekArc? Essentially it’s a SeekBar that has been wrapped around a circle. It acts like a SeekBar and generally has the same settings. You can even add a Listener to it as you would with a SeekBar. So if its in a circle why not call it a SeekCircle? The answer is that the SeekArc does have a few more setting than the SeekBar one of these is the sweepAngle, which means that the SeekArc doesn’t have to be drawn as a full circle, and can be drawn as a circle, semi-circle  or quarter arc or whatever you like. [Video]("http://www.youtube.com/watch?v=MefE7mjM94M")
+So what the heck is a SeekArc? Essentially it’s a SeekBar that has been wrapped around a circle. It acts like a SeekBar and generally has the same settings. You can even add a Listener to it as you would with a SeekBar. So if its in a circle why not call it a SeekCircle? The answer is that the SeekArc does have a few more setting than the SeekBar one of these is the sweepAngle, which means that the SeekArc doesn’t have to be drawn as a full circle, and can be drawn as a circle, semi-circle  or quarter arc or whatever you like. Supports min SDK 8. 
 
 <div align="center">
   <img height="200px" src="../raw/arc_sweeps.png"/>
 </div>
+
+[Video demo of the sample project]("http://www.youtube.com/watch?v=MefE7mjM94M")
 
 # Using the SeekArc
 
@@ -18,7 +20,7 @@ To help with understanding how to use the SeeekArc I’ve put together a sample 
 * Sweep angle
 * Rotation
 * Clockwise (which way do you want the progress to increase clockwise/anticlockwise),
-* Arc and progress width,
+* Arc and progress width
 * Rounded corners 
 * Touch inside enable/disable.
 * Enabled - enables/disables touch and the thumbnail 
@@ -26,7 +28,7 @@ To help with understanding how to use the SeeekArc I’ve put together a sample 
 
 ## To use it in your code
 
-Simply add the View to your Layout (There are several custom attributes) 
+Simply add the View to your layout (There are several custom attributes) 
 
         <com.triggertrap.seekarc.SeekArc
             android:id="@+id/seekArc"
@@ -42,7 +44,7 @@ Simply add the View to your Layout (There are several custom attributes)
             
 ## Adding to your project
 
-This library is not yet released in Maven Central, until then you can add as a library module or use JitPack.io
+This library is not yet released in Maven Central, until then you can add as a library module or use JitPack.io. 
 
 Add remote maven url
 
@@ -86,7 +88,7 @@ After a long hiatus we've recently integrated many of the PRs/changes submitted 
 
 # Sample Project
 
-You can see the SeekArc working in the sample application. Just check out the library and sample application as two separate projects and import them into eclipse. Make sure that the Sample app is setup to correctly use the library project. The sample app will let you explore the attributes that can be set on the SeekArc
+You can see the SeekArc working in the sample application. Just check out the library and sample application as two separate projects and import them into eclipse. Make sure that the Sample app is setup to correctly use the library project. The sample app will let you explore the attributes that can be set on the SeekArc. 
 
 <div align="center">
   <img height="400px" src="../raw/sample_app.png"/>
