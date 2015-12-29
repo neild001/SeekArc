@@ -9,7 +9,7 @@ So what the heck is a SeekArc? Essentially it’s a SeekBar that has been wrappe
   <img height="200px" src="raw/arc_sweeps.png"/>
 </div>
 
-[Video demo of the sample project]("http://www.youtube.com/watch?v=MefE7mjM94M")
+[Video demo of the sample project](http://www.youtube.com/watch?v=MefE7mjM94M)
 
 # Using the SeekArc
 
@@ -60,7 +60,7 @@ Now add a library dependency (remember to check for latest release)
 
 ```groovy
     dependencies {
-        compile 'com.github.triggertap:seekarc:1.1'
+        compile 'com.github.Triggertrap:SeekArc:v1.1'
     }
 ```
 
