@@ -61,6 +61,7 @@ public class SeekArc extends View {
 	 * The Maximum value that this SeekArc can be set to
 	 */
 	private int mMax = 100;
+	private int mMin = 0;
 	
 	/**
 	 * The Current value that the SeekArc is set to
@@ -214,6 +215,10 @@ public class SeekArc extends View {
 					thumbHalfheight);
 
 			mMax = a.getInteger(R.styleable.SeekArc_max, mMax);
+			mMin = a.getInteger(R.styleable.SeekArc_min, mMin);
+
+			mMax -= mMin;
+
 			mProgress = a.getInteger(R.styleable.SeekArc_progress, mProgress);
 			mProgressWidth = (int) a.getDimension(
 					R.styleable.SeekArc_progressWidth, mProgressWidth);
@@ -442,7 +447,7 @@ public class SeekArc extends View {
 
 		if (mOnSeekArcChangeListener != null) {
 			mOnSeekArcChangeListener
-					.onProgressChanged(this, progress, fromUser);
+					.onProgressChanged(this, progress - (-mMin), fromUser);
 		}
 
 		mProgressSweep = (float) progress / mMax * mSweepAngle;
