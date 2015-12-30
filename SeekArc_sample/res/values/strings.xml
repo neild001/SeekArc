@@ -31,11 +31,13 @@
         <item>@string/title_activity_custom</item>
         <item>@string/title_activity_scrollview</item>
         <item>@string/title_activity_disabled</item>
+        <item>@string/title_activity_markers</item>
     </string-array>
 
     <string name="title_activity_simple">SeekArc (default)</string>
     <string name="title_activity_custom">Custom style</string>
     <string name="title_activity_scrollview">In scrollview</string>
     <string name="title_activity_disabled">Disabled (read only)</string>
+    <string name="title_activity_markers">With Markers</string>
 
 </resources>

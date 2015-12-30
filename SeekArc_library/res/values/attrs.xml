@@ -39,10 +39,16 @@
         <attr name="touchInside" format="boolean" />
         <attr name="clockwise" format="boolean" />
         <attr name="enabled" format="boolean" />
+        <attr name="markerEmpty" format="reference" />
+        <attr name="markerFill" format="reference" />
+        <attr name="markerTextEmptyColor" format="color" />
+        <attr name="markerTextFillColor" format="color" />
+        <attr name="markerTextSize" format="dimension" />
+        <attr name="markerTextRadius" format="dimension" />
     </declare-styleable>
-    
+
     <declare-styleable name="SeekArcTheme">
-        <attr name="seekArcStyle" format="reference"></attr>        
+        <attr name="seekArcStyle" format="reference"></attr>
     </declare-styleable>
 
 </resources>

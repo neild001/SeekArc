@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:seekarc="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.triggertrap.seekarc.SeekArc
+        android:id="@+id/markerSeekArc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="85dp"
+        seekarc:arcWidth="3dp"
+        seekarc:markerTextEmptyColor="@android:color/tertiary_text_light"
+        seekarc:markerTextFillColor="@android:color/black"
+        seekarc:markerTextRadius="42dp"
+        seekarc:markerTextSize="14sp"
+        seekarc:max="100"
+        seekarc:rotation="180"
+        seekarc:startAngle="30"
+        seekarc:sweepAngle="300"
+        seekarc:thumb="@android:color/transparent"
+        seekarc:touchInside="true" />
+
+</LinearLayout>
