@@ -113,6 +113,11 @@ public class SeekArc extends View {
  	 */
 	private boolean mEnabled = true;
 
+	/**
+	 * Do we allow touch "jumping" across the gap?
+	 */
+	private boolean mJumpAllowed = true;
+
 	// Internal variables
 	private int mArcRadius = 0;
 	private float mProgressSweep = 0;
@@ -126,6 +131,7 @@ public class SeekArc extends View {
 	private double mTouchAngle;
 	private float mTouchIgnoreRadius;
 	private OnSeekArcChangeListener mOnSeekArcChangeListener;
+	private int overflowDirection = 0; // 0 : in-bounds, -1 : below zero, 1 : above mMax
 
 	public interface OnSeekArcChangeListener {
 
@@ -229,6 +235,7 @@ public class SeekArc extends View {
 			mClockwise = a.getBoolean(R.styleable.SeekArc_clockwise,
 					mClockwise);
 			mEnabled = a.getBoolean(R.styleable.SeekArc_enabled, mEnabled);
+			mJumpAllowed = a.getBoolean(R.styleable.SeekArc_jumpAllowed, mJumpAllowed);
 
 			arcColor = a.getColor(R.styleable.SeekArc_arcColor, arcColor);
 			progressColor = a.getColor(R.styleable.SeekArc_progressColor,
@@ -331,11 +338,13 @@ public class SeekArc extends View {
 					updateOnTouch(event);
 					break;
 				case MotionEvent.ACTION_UP:
+					overflowDirection = 0;
 					onStopTrackingTouch();
 					setPressed(false);
 					this.getParent().requestDisallowInterceptTouchEvent(false);
 					break;
 				case MotionEvent.ACTION_CANCEL:
+					overflowDirection = 0;
 					onStopTrackingTouch();
 					setPressed(false);
 					this.getParent().requestDisallowInterceptTouchEvent(false);
@@ -409,10 +418,33 @@ public class SeekArc extends View {
 	private int getProgressForAngle(double angle) {
 		int touchProgress = (int) Math.round(valuePerDegree() * angle);
 
-		touchProgress = (touchProgress < 0) ? INVALID_PROGRESS_VALUE
-				: touchProgress;
-		touchProgress = (touchProgress > mMax) ? INVALID_PROGRESS_VALUE
-				: touchProgress;
+		if (touchProgress < 0) {
+			if (!isJumpAllowed() && overflowDirection == 0) {
+				// Remember that we went off the low end
+				overflowDirection = -1;
+			}
+			return INVALID_PROGRESS_VALUE;
+		}
+		if (touchProgress > mMax) {
+			if (!isJumpAllowed() && overflowDirection == 0) {
+				// Remember that we went off the high end
+				overflowDirection = 1;
+			}
+			return INVALID_PROGRESS_VALUE;
+		}
+		if (overflowDirection == 1) {
+			if (touchProgress < (int)Math.round(mMax * 0.75)) {
+				return INVALID_PROGRESS_VALUE;
+			} else {
+				overflowDirection = 0;
+			}
+		} else if (overflowDirection == -1) {
+			if (touchProgress > (int)Math.round(mMax * 0.25) ) {
+				return INVALID_PROGRESS_VALUE;
+			} else {
+				overflowDirection = 0;
+			}
+		}
 		return touchProgress;
 	}
 
@@ -556,6 +588,14 @@ public class SeekArc extends View {
 
 	public void setEnabled(boolean enabled) {
 		this.mEnabled = enabled;
+	}
+
+	public boolean isJumpAllowed() {
+		return mJumpAllowed;
+	}
+
+	public void setJumpAllowed(boolean jumpAllowed) {
+		this.mJumpAllowed = jumpAllowed;
 	}
 
 	public int getProgressColor() {

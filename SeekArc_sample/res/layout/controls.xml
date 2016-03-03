@@ -161,9 +161,22 @@
 
         <CheckBox
             android:id="@+id/touchInside"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Allow gap jump" />
+
+        <CheckBox
+            android:id="@+id/jumpAllowed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+
     </LinearLayout>
 
     <LinearLayout
