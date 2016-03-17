@@ -189,8 +189,8 @@ public class SeekArc extends View {
 		// Defaults, may need to link this into theme settings
 		int arcColor = res.getColor(R.color.progress_gray);
 		int progressColor = res.getColor(R.color.default_blue_light);
-		int thumbHalfheight = 0;
-		int thumbHalfWidth = 0;
+		int thumbHalfheight;
+		int thumbHalfWidth;
 		mThumb = res.getDrawable(R.drawable.seek_arc_control_selector);
 		// Convert progress width to pixels for current density
 		mProgressWidth = (int) (mProgressWidth * density);
@@ -296,9 +296,9 @@ public class SeekArc extends View {
 		final int width = getDefaultSize(getSuggestedMinimumWidth(),
 				widthMeasureSpec);
 		final int min = Math.min(width, height);
-		float top = 0;
-		float left = 0;
-		int arcDiameter = 0;
+		float top;
+		float left;
+		int arcDiameter;
 
 		mTranslateX = (int) (width * 0.5f);
 		mTranslateY = (int) (height * 0.5f);
