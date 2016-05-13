@@ -275,10 +275,13 @@ public class SeekArc extends View {
 		
 		// Draw the arcs
 		final int arcStart = mStartAngle + mAngleOffset + mRotation;
-		final int arcSweep = mSweepAngle;
-		canvas.drawArc(mArcRect, arcStart, arcSweep, false, mArcPaint);
-		canvas.drawArc(mArcRect, arcStart, mProgressSweep, false,
-				mProgressPaint);
+        final int arcSweep = mSweepAngle;
+        if (mProgress == 0) {
+            canvas.drawArc(mArcRect, arcStart, arcSweep, false, mArcPaint);
+        } else {
+            canvas.drawArc(mArcRect, arcStart, arcSweep, false, mArcPaint);
+            canvas.drawArc(mArcRect, arcStart, mProgressSweep, false, mProgressPaint);
+        }
 
 		if(mEnabled) {
 			// Draw the thumb nail
