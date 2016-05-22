@@ -33,6 +33,7 @@
         <attr name="rotation" format="integer" />
         <attr name="startAngle" format="integer" />
         <attr name="sweepAngle" format="integer" />
+        <attr name="thumbTint" format="color" />
         <attr name="arcColor" format="color" />
         <attr name="progressColor" format="color" />
         <attr name="roundEdges" format="boolean" />
