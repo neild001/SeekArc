@@ -27,7 +27,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -189,6 +192,7 @@ public class SeekArc extends View {
 		// Defaults, may need to link this into theme settings
 		int arcColor = res.getColor(R.color.progress_gray);
 		int progressColor = res.getColor(R.color.default_blue_light);
+		int thumbColor = Color.WHITE;
 		int thumbHalfheight = 0;
 		int thumbHalfWidth = 0;
 		mThumb = res.getDrawable(R.drawable.seek_arc_control_selector);
@@ -234,8 +238,12 @@ public class SeekArc extends View {
 			progressColor = a.getColor(R.styleable.SeekArc_progressColor,
 					progressColor);
 
+			thumbColor = a.getColor(R.styleable.SeekArc_thumbTint, thumbColor);
+
 			a.recycle();
 		}
+
+		mThumb.setColorFilter(thumbColor, PorterDuff.Mode.MULTIPLY);
 
 		mProgress = (mProgress > mMax) ? mMax : mProgress;
 		mProgress = (mProgress < 0) ? 0 : mProgress;
