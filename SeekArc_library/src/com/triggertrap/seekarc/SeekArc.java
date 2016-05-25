@@ -556,6 +556,7 @@ public class SeekArc extends View {
 
 	public void setEnabled(boolean enabled) {
 		this.mEnabled = enabled;
+		invalidate();
 	}
 
 	public int getProgressColor() {
