@@ -238,7 +238,7 @@ public class SeekArc extends View {
 			progressColor = a.getColor(R.styleable.SeekArc_progressColor,
 					progressColor);
 
-			thumbColor = a.getColor(R.styleable.SeekArc_thumbTint, thumbColor);
+			thumbColor = a.getColor(R.styleable.SeekArc_thumbDrawableTint, thumbColor);
 
 			a.recycle();
 		}
