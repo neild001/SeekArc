@@ -192,6 +192,8 @@ public class SeekArc extends View {
 		int thumbHalfheight = 0;
 		int thumbHalfWidth = 0;
 		mThumb = res.getDrawable(R.drawable.seek_arc_control_selector);
+		mThumb.mutate().setColorFilter(progressColor, PorterDuff.Mode.MULTIPLY);
+
 		// Convert progress width to pixels for current density
 		mProgressWidth = (int) (mProgressWidth * density);
 
@@ -233,6 +235,7 @@ public class SeekArc extends View {
 			arcColor = a.getColor(R.styleable.SeekArc_arcColor, arcColor);
 			progressColor = a.getColor(R.styleable.SeekArc_progressColor,
 					progressColor);
+			mThumb.mutate().setColorFilter(progressColor, PorterDuff.Mode.MULTIPLY);
 
 			a.recycle();
 		}
@@ -564,6 +567,8 @@ public class SeekArc extends View {
 
 	public void setProgressColor(int color) {
 		mProgressPaint.setColor(color);
+		//Change the thumb color to fit the progress color
+		mThumb.mutate().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
 		invalidate();
 	}
 
