@@ -107,6 +107,16 @@ public class SeekArc extends View {
 	 */
 	private boolean mClockwise = true;
 
+	/**
+	 * Thumb scaling when progress is 0.
+	 */
+	private float mThumbScaleMin = 1;
+
+	/**
+	 * Thumb scaling when progress is max.
+	 */
+	private float mThumbScaleMax = 1;
+
 
 	/**
 	 * is the control enabled/touchable
@@ -229,6 +239,8 @@ public class SeekArc extends View {
 			mClockwise = a.getBoolean(R.styleable.SeekArc_clockwise,
 					mClockwise);
 			mEnabled = a.getBoolean(R.styleable.SeekArc_enabled, mEnabled);
+			mThumbScaleMin = a.getFloat(R.styleable.SeekArc_thumbScaleMin, mThumbScaleMin);
+			mThumbScaleMax = a.getFloat(R.styleable.SeekArc_thumbScaleMax, mThumbScaleMax);
 
 			arcColor = a.getColor(R.styleable.SeekArc_arcColor, arcColor);
 			progressColor = a.getColor(R.styleable.SeekArc_progressColor,
@@ -283,6 +295,13 @@ public class SeekArc extends View {
 		if(mEnabled) {
 			// Draw the thumb nail
 			canvas.translate(mTranslateX - mThumbXPos, mTranslateY - mThumbYPos);
+
+			//Only scale if we need to.
+			if (mThumbScaleMin != 1 || mThumbScaleMax != 1) {
+				float scale = mThumbScaleMin + ((float) getProgress() / (float) getMax()) *
+						(mThumbScaleMax - mThumbScaleMin);
+				canvas.scale(scale, scale);
+			}
 			mThumb.draw(canvas);
 		}
 	}
