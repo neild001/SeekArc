@@ -583,4 +583,12 @@ public class SeekArc extends View {
 	public void setMax(int mMax) {
 		this.mMax = mMax;
 	}
+
+	public Drawable getThumb(){
+		return mThumb;
+	}
+
+	public void setThumb(Drawable thumb){
+		this.mThumb = thumb;
+	}
 }
