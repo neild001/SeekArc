@@ -39,6 +39,8 @@
         <attr name="touchInside" format="boolean" />
         <attr name="clockwise" format="boolean" />
         <attr name="enabled" format="boolean" />
+        <attr name="thumbScaleMin" format="float" />
+        <attr name="thumbScaleMax" format="float" />
     </declare-styleable>
     
     <declare-styleable name="SeekArcTheme">
