@@ -470,6 +470,20 @@ public class SeekArc extends View {
 		updateProgress(progress, false);
 	}
 
+	public void setProgress(int progress, boolean animated) {
+		setProgress(progress, animated, 300);
+	}
+
+	public void setProgress(int progress, boolean animated, long duration) {
+		if (animated) {
+			SeekArcAnimation animation = new SeekArcAnimation(this, mProgress, progress);
+			animation.setDuration(duration);
+			startAnimation(animation);
+		} else {
+			updateProgress(progress, false);
+		}
+	}
+
 	public int getProgress() {
 		return mProgress;
 	}
@@ -583,4 +597,27 @@ public class SeekArc extends View {
 	public void setMax(int mMax) {
 		this.mMax = mMax;
 	}
+
+	public class SeekArcAnimation extends Animation {
+		private SeekArc seekArc;
+		private float from;
+		private float to;
+
+		public SeekArcAnimation(SeekArc seekArc, float from, float to) {
+			super();
+
+			this.seekArc = seekArc;
+			this.from = from;
+			this.to = to;
+		}
+
+		@Override
+		protected void applyTransformation(float interpolatedTime, Transformation t) {
+			super.applyTransformation(interpolatedTime, t);
+			
+			float value = from + (to - from) * interpolatedTime;
+			seekArc.setProgress((int)value);
+		}
+	}
+
 }
