@@ -435,6 +435,10 @@ public class SeekArc extends View {
 		if (progress == INVALID_PROGRESS_VALUE) {
 			return;
 		}
+		
+		progress = (progress > mMax) ? mMax : progress;
+		progress = (progress < 0) ? 0 : progress;
+		mProgress = progress;
 
 		progress = (progress > mMax) ? mMax : progress;
 		progress = (progress < 0) ? 0 : progress;
