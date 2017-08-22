@@ -49,6 +49,7 @@
             seekarc:startAngle="30"
             seekarc:sweepAngle="300"
             seekarc:touchInside="true"
+            seekarc:jumpAllowed="false"
 
             />
 
