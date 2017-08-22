@@ -53,6 +53,7 @@ public class SimpleActivity extends Activity {
 	private CheckBox mClockwise;
 	private TextView mSeekArcProgress;
 	private CheckBox mEnabled;
+	private CheckBox mJumpAllowed;
 
 	protected int getLayoutFile(){
 		return R.layout.holo_sample;
@@ -74,6 +75,7 @@ public class SimpleActivity extends Activity {
 		mTouchInside = (CheckBox) findViewById(R.id.touchInside);
 		mClockwise = (CheckBox) findViewById(R.id.clockwise);
 		mEnabled = (CheckBox) findViewById(R.id.enabled);
+		mJumpAllowed = (CheckBox) findViewById(R.id.jumpAllowed);
 
 		mRotation.setProgress(mSeekArc.getArcRotation());
 		mStartAngle.setProgress(mSeekArc.getStartAngle());
@@ -209,7 +211,15 @@ public class SimpleActivity extends Activity {
 				mSeekArc.invalidate();
 			}
 		});
-		
+
+		mJumpAllowed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				mSeekArc.setJumpAllowed(isChecked);
+				mSeekArc.invalidate();
+			}
+		});
+
 	}
 	
 }
