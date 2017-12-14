@@ -139,7 +139,7 @@ public class SeekArc extends View {
 		 * @param progress
 		 *            The current progress level. This will be in the range
 		 *            0..max where max was set by
-		 *            {@link ProgressArc#setMax(int)}. (The default value for
+		 *            {@link SeekArc#setMax(int)}. (The default value for
 		 *            max is 100.)
 		 * @param fromUser
 		 *            True if the progress change was initiated by the user.
@@ -277,8 +277,10 @@ public class SeekArc extends View {
 		final int arcStart = mStartAngle + mAngleOffset + mRotation;
 		final int arcSweep = mSweepAngle;
 		canvas.drawArc(mArcRect, arcStart, arcSweep, false, mArcPaint);
-		canvas.drawArc(mArcRect, arcStart, mProgressSweep, false,
-				mProgressPaint);
+		if (mProgress > 0) {
+			canvas.drawArc(mArcRect, arcStart, mProgressSweep, false,
+					mProgressPaint);
+		}
 
 		if(mEnabled) {
 			// Draw the thumb nail
@@ -460,7 +462,7 @@ public class SeekArc extends View {
 	 * @param l
 	 *            The seek bar notification listener
 	 * 
-	 * @see SeekArc.OnSeekBarChangeListener
+	 * @see SeekArc::OnSeekBarChangeListener
 	 */
 	public void setOnSeekArcChangeListener(OnSeekArcChangeListener l) {
 		mOnSeekArcChangeListener = l;
