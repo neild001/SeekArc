@@ -29,10 +29,10 @@
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:padding="30dp"
-                seekarc:rotation="180"
-                seekarc:startAngle="30"
-                seekarc:sweepAngle="300"
-                seekarc:touchInside="true" />
+                seekarc:seekArc_rotation="180"
+                seekarc:seekArc_startAngle="30"
+                seekarc:seekArc_sweepAngle="300"
+                seekarc:seekArc_touchInside="true" />
 
         </FrameLayout>
 
