@@ -38,8 +38,8 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="seekArcStyle">@style/SeekArcLight</item>
-<!--    <item name="seekArcStyle">@style/SeekArc</item> -->
+        <item name="seekArc_seekArcStyle">@style/SeekArcLight</item>
+<!--    <item name="seekArc_seekArcStyle">@style/SeekArc</item> -->
     </style>
 
 </resources>

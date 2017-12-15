@@ -24,11 +24,11 @@
 <resources>
 
     <style name="SeekArc">
-        <item name="arcColor">@color/progress_gray_dark</item>
+        <item name="seekArc_arcColor">@color/progress_gray_dark</item>
     </style>
     
     <style name="SeekArcLight">
-        <item name="arcColor">@color/progress_gray</item>
+        <item name="seekArc_arcColor">@color/progress_gray</item>
     </style>
  
 </resources>

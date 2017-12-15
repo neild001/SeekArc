@@ -2,15 +2,15 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 27
+    buildToolsVersion '27.0.2'
 
     defaultConfig {
         applicationId "com.triggertrap.seekarc.sample"
-        minSdkVersion 8
-        targetSdkVersion 23
+        minSdkVersion 14
+        targetSdkVersion 27
         versionCode 2
-        versionName "1.1"
+        versionName "1.1.2"
     }
 
      sourceSets {
@@ -30,17 +30,16 @@ android {
     buildTypes {
 
         //rename the .apk file with version name and code
-        applicationVariants.all { variant ->
-            variant.outputs.each { output ->
-                def newApkName = "seekarc-sample-" + output.outputFile.name.replace(".apk", "-" + defaultConfig.versionName + "[" + defaultConfig.versionCode + "].apk")
-                output.outputFile= new File(output.outputFile.parent,newApkName)
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "seekarc-sample-${variant.versionName}[${variant.versionCode}].apk"
             }
         }
 
         debug {
             debuggable true
             minifyEnabled false
-            versionNameSuffix 'debug'
+            versionNameSuffix '-debug'
         }
         release {
             debuggable false
@@ -49,6 +48,10 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     lintOptions {
           abortOnError false
@@ -57,5 +60,5 @@ android {
 
 dependencies {
     compile project(':SeekArc_library')
-    compile "com.android.support:appcompat-v7:23.0.1"
+    compile "com.android.support:appcompat-v7:27.0.2"
 }
