@@ -139,7 +139,7 @@ public class SeekArc extends View {
 		 * @param progress
 		 *            The current progress level. This will be in the range
 		 *            0..max where max was set by
-		 *            {@link SeekArc#setMax(int)}. (The default value for
+		 *            {@link ProgressArc#setMax(int)}. (The default value for
 		 *            max is 100.)
 		 * @param fromUser
 		 *            True if the progress change was initiated by the user.
@@ -172,7 +172,7 @@ public class SeekArc extends View {
 
 	public SeekArc(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init(context, attrs, R.attr.seekArc_seekArcStyle);
+		init(context, attrs, R.attr.seekArcStyle);
 	}
 
 	public SeekArc(Context context, AttributeSet attrs, int defStyle) {
@@ -201,7 +201,7 @@ public class SeekArc extends View {
 			final TypedArray a = context.obtainStyledAttributes(attrs,
 					R.styleable.SeekArc, defStyle, 0);
 
-			Drawable thumb = a.getDrawable(R.styleable.SeekArc_seekArc_thumb);
+			Drawable thumb = a.getDrawable(R.styleable.SeekArc_thumb);
 			if (thumb != null) {
 				mThumb = thumb;
 			}
@@ -213,25 +213,25 @@ public class SeekArc extends View {
 			mThumb.setBounds(-thumbHalfWidth, -thumbHalfheight, thumbHalfWidth,
 					thumbHalfheight);
 
-			mMax = a.getInteger(R.styleable.SeekArc_seekArc_max, mMax);
-			mProgress = a.getInteger(R.styleable.SeekArc_seekArc_progress, mProgress);
+			mMax = a.getInteger(R.styleable.SeekArc_max, mMax);
+			mProgress = a.getInteger(R.styleable.SeekArc_progress, mProgress);
 			mProgressWidth = (int) a.getDimension(
-					R.styleable.SeekArc_seekArc_progressWidth, mProgressWidth);
-			mArcWidth = (int) a.getDimension(R.styleable.SeekArc_seekArc_arcWidth,
+					R.styleable.SeekArc_progressWidth, mProgressWidth);
+			mArcWidth = (int) a.getDimension(R.styleable.SeekArc_arcWidth,
 					mArcWidth);
-			mStartAngle = a.getInt(R.styleable.SeekArc_seekArc_startAngle, mStartAngle);
-			mSweepAngle = a.getInt(R.styleable.SeekArc_seekArc_sweepAngle, mSweepAngle);
-			mRotation = a.getInt(R.styleable.SeekArc_seekArc_rotation, mRotation);
-			mRoundedEdges = a.getBoolean(R.styleable.SeekArc_seekArc_roundEdges,
+			mStartAngle = a.getInt(R.styleable.SeekArc_startAngle, mStartAngle);
+			mSweepAngle = a.getInt(R.styleable.SeekArc_sweepAngle, mSweepAngle);
+			mRotation = a.getInt(R.styleable.SeekArc_rotation, mRotation);
+			mRoundedEdges = a.getBoolean(R.styleable.SeekArc_roundEdges,
 					mRoundedEdges);
-			mTouchInside = a.getBoolean(R.styleable.SeekArc_seekArc_touchInside,
+			mTouchInside = a.getBoolean(R.styleable.SeekArc_touchInside,
 					mTouchInside);
-			mClockwise = a.getBoolean(R.styleable.SeekArc_seekArc_clockwise,
+			mClockwise = a.getBoolean(R.styleable.SeekArc_clockwise,
 					mClockwise);
-			mEnabled = a.getBoolean(R.styleable.SeekArc_seekArc_enabled, mEnabled);
+			mEnabled = a.getBoolean(R.styleable.SeekArc_enabled, mEnabled);
 
-			arcColor = a.getColor(R.styleable.SeekArc_seekArc_arcColor, arcColor);
-			progressColor = a.getColor(R.styleable.SeekArc_seekArc_progressColor,
+			arcColor = a.getColor(R.styleable.SeekArc_arcColor, arcColor);
+			progressColor = a.getColor(R.styleable.SeekArc_progressColor,
 					progressColor);
 
 			a.recycle();
@@ -268,11 +268,11 @@ public class SeekArc extends View {
 	}
 
 	@Override
-	protected void onDraw(Canvas canvas) {		
+	protected void onDraw(Canvas canvas) {
 		if(!mClockwise) {
 			canvas.scale(-1, 1, mArcRect.centerX(), mArcRect.centerY() );
 		}
-		
+
 		// Draw the arcs
 		final int arcStart = mStartAngle + mAngleOffset + mRotation;
 		final int arcSweep = mSweepAngle;
@@ -304,17 +304,17 @@ public class SeekArc extends View {
 
 		mTranslateX = (int) (width * 0.5f);
 		mTranslateY = (int) (height * 0.5f);
-		
+
 		arcDiameter = min - getPaddingLeft();
 		mArcRadius = arcDiameter / 2;
 		top = height / 2 - (arcDiameter / 2);
 		left = width / 2 - (arcDiameter / 2);
 		mArcRect.set(left, top, left + arcDiameter, top + arcDiameter);
-	
+
 		int arcStart = (int)mProgressSweep + mStartAngle  + mRotation + 90;
 		mThumbXPos = (int) (mArcRadius * Math.cos(Math.toRadians(arcStart)));
 		mThumbYPos = (int) (mArcRadius * Math.sin(Math.toRadians(arcStart)));
-		
+
 		setTouchInSide(mTouchInside);
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
@@ -431,7 +431,7 @@ public class SeekArc extends View {
 		mThumbXPos = (int) (mArcRadius * Math.cos(Math.toRadians(thumbAngle)));
 		mThumbYPos = (int) (mArcRadius * Math.sin(Math.toRadians(thumbAngle)));
 	}
-	
+
 	private void updateProgress(int progress, boolean fromUser) {
 
 		if (progress == INVALID_PROGRESS_VALUE) {
@@ -458,10 +458,10 @@ public class SeekArc extends View {
 	 * Sets a listener to receive notifications of changes to the SeekArc's
 	 * progress level. Also provides notifications of when the user starts and
 	 * stops a touch gesture within the SeekArc.
-	 * 
+	 *
 	 * @param l
 	 *            The seek bar notification listener
-	 * 
+	 *
 	 * @see SeekArc::OnSeekBarChangeListener
 	 */
 	public void setOnSeekArcChangeListener(OnSeekArcChangeListener l) {
@@ -484,7 +484,7 @@ public class SeekArc extends View {
 		this.mProgressWidth = mProgressWidth;
 		mProgressPaint.setStrokeWidth(mProgressWidth);
 	}
-	
+
 	public int getArcWidth() {
 		return mArcWidth;
 	}
@@ -519,7 +519,7 @@ public class SeekArc extends View {
 		this.mSweepAngle = mSweepAngle;
 		updateThumbPosition();
 	}
-	
+
 	public void setRoundedEdges(boolean isEnabled) {
 		mRoundedEdges = isEnabled;
 		if (mRoundedEdges) {
@@ -530,7 +530,7 @@ public class SeekArc extends View {
 			mProgressPaint.setStrokeCap(Paint.Cap.SQUARE);
 		}
 	}
-	
+
 	public void setTouchInSide(boolean isEnabled) {
 		int thumbHalfheight = (int) mThumb.getIntrinsicHeight() / 2;
 		int thumbHalfWidth = (int) mThumb.getIntrinsicWidth() / 2;
@@ -543,7 +543,7 @@ public class SeekArc extends View {
 					- Math.min(thumbHalfWidth, thumbHalfheight);
 		}
 	}
-	
+
 	public void setClockwise(boolean isClockwise) {
 		mClockwise = isClockwise;
 	}
