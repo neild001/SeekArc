@@ -139,7 +139,6 @@ public class SeekArc extends View {
 		 * @param progress
 		 *            The current progress level. This will be in the range
 		 *            0..max where max was set by
-		 *            {@link ProgressArc#setMax(int)}. (The default value for
 		 *            max is 100.)
 		 * @param fromUser
 		 *            True if the progress change was initiated by the user.
