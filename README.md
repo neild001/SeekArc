@@ -60,7 +60,7 @@ Now add a library dependency (remember to check for latest release)
 
 ```groovy
     dependencies {
-	        implementation 'com.github.mreram:SeekArc:v1.2'
+	        implementation 'com.github.mreram:SeekArc:v1.6'
           }
 ```
 
