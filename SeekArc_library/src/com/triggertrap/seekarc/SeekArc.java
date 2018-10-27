@@ -139,7 +139,6 @@ public class SeekArc extends View {
 		 * @param progress
 		 *            The current progress level. This will be in the range
 		 *            0..max where max was set by
-		 *            {@link ProgressArc#setMax(int)}. (The default value for
 		 *            max is 100.)
 		 * @param fromUser
 		 *            True if the progress change was initiated by the user.
@@ -268,17 +267,19 @@ public class SeekArc extends View {
 	}
 
 	@Override
-	protected void onDraw(Canvas canvas) {		
+	protected void onDraw(Canvas canvas) {
 		if(!mClockwise) {
 			canvas.scale(-1, 1, mArcRect.centerX(), mArcRect.centerY() );
 		}
-		
+
 		// Draw the arcs
 		final int arcStart = mStartAngle + mAngleOffset + mRotation;
 		final int arcSweep = mSweepAngle;
 		canvas.drawArc(mArcRect, arcStart, arcSweep, false, mArcPaint);
-		canvas.drawArc(mArcRect, arcStart, mProgressSweep, false,
-				mProgressPaint);
+		if (mProgress > 0) {
+			canvas.drawArc(mArcRect, arcStart, mProgressSweep, false,
+					mProgressPaint);
+		}
 
 		if(mEnabled) {
 			// Draw the thumb nail
@@ -302,17 +303,17 @@ public class SeekArc extends View {
 
 		mTranslateX = (int) (width * 0.5f);
 		mTranslateY = (int) (height * 0.5f);
-		
+
 		arcDiameter = min - getPaddingLeft();
 		mArcRadius = arcDiameter / 2;
 		top = height / 2 - (arcDiameter / 2);
 		left = width / 2 - (arcDiameter / 2);
 		mArcRect.set(left, top, left + arcDiameter, top + arcDiameter);
-	
+
 		int arcStart = (int)mProgressSweep + mStartAngle  + mRotation + 90;
 		mThumbXPos = (int) (mArcRadius * Math.cos(Math.toRadians(arcStart)));
 		mThumbYPos = (int) (mArcRadius * Math.sin(Math.toRadians(arcStart)));
-		
+
 		setTouchInSide(mTouchInside);
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
@@ -409,9 +410,9 @@ public class SeekArc extends View {
 	private int getProgressForAngle(double angle) {
 		int touchProgress = (int) Math.round(valuePerDegree() * angle);
 
-		touchProgress = (touchProgress < 0) ? INVALID_PROGRESS_VALUE
+		touchProgress = (touchProgress < 0) ? 0
 				: touchProgress;
-		touchProgress = (touchProgress > mMax) ? INVALID_PROGRESS_VALUE
+		touchProgress = (touchProgress > mMax) ? mMax
 				: touchProgress;
 		return touchProgress;
 	}
@@ -429,7 +430,7 @@ public class SeekArc extends View {
 		mThumbXPos = (int) (mArcRadius * Math.cos(Math.toRadians(thumbAngle)));
 		mThumbYPos = (int) (mArcRadius * Math.sin(Math.toRadians(thumbAngle)));
 	}
-	
+
 	private void updateProgress(int progress, boolean fromUser) {
 
 		if (progress == INVALID_PROGRESS_VALUE) {
@@ -456,11 +457,11 @@ public class SeekArc extends View {
 	 * Sets a listener to receive notifications of changes to the SeekArc's
 	 * progress level. Also provides notifications of when the user starts and
 	 * stops a touch gesture within the SeekArc.
-	 * 
+	 *
 	 * @param l
 	 *            The seek bar notification listener
-	 * 
-	 * @see SeekArc.OnSeekBarChangeListener
+	 *
+	 * @see SeekArc::OnSeekBarChangeListener
 	 */
 	public void setOnSeekArcChangeListener(OnSeekArcChangeListener l) {
 		mOnSeekArcChangeListener = l;
@@ -482,7 +483,7 @@ public class SeekArc extends View {
 		this.mProgressWidth = mProgressWidth;
 		mProgressPaint.setStrokeWidth(mProgressWidth);
 	}
-	
+
 	public int getArcWidth() {
 		return mArcWidth;
 	}
@@ -517,7 +518,7 @@ public class SeekArc extends View {
 		this.mSweepAngle = mSweepAngle;
 		updateThumbPosition();
 	}
-	
+
 	public void setRoundedEdges(boolean isEnabled) {
 		mRoundedEdges = isEnabled;
 		if (mRoundedEdges) {
@@ -528,7 +529,7 @@ public class SeekArc extends View {
 			mProgressPaint.setStrokeCap(Paint.Cap.SQUARE);
 		}
 	}
-	
+
 	public void setTouchInSide(boolean isEnabled) {
 		int thumbHalfheight = (int) mThumb.getIntrinsicHeight() / 2;
 		int thumbHalfWidth = (int) mThumb.getIntrinsicWidth() / 2;
@@ -541,7 +542,7 @@ public class SeekArc extends View {
 					- Math.min(thumbHalfWidth, thumbHalfheight);
 		}
 	}
-	
+
 	public void setClockwise(boolean isClockwise) {
 		mClockwise = isClockwise;
 	}

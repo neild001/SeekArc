@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.triggertrap.seekarc.sample"
@@ -24,18 +24,11 @@ android {
             assets.srcDirs = ['assets']
         }
 
-        instrumentTest.setRoot('tests')
     }
 
     buildTypes {
 
-        //rename the .apk file with version name and code
-        applicationVariants.all { variant ->
-            variant.outputs.each { output ->
-                def newApkName = "seekarc-sample-" + output.outputFile.name.replace(".apk", "-" + defaultConfig.versionName + "[" + defaultConfig.versionCode + "].apk")
-                output.outputFile= new File(output.outputFile.parent,newApkName)
-            }
-        }
+
 
         debug {
             debuggable true
