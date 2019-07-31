@@ -6,7 +6,7 @@ env:
 
 android:
   components:
-    - build-tools-19.0.0
+    - build-tools-19.0.2
 
 before_script:
   # Create and start emulator
@@ -16,7 +16,3 @@ before_script:
   - adb shell input keyevent 82 &
 
 script: ./gradlew connectedInstrumentTestlanguage: android
-android:
-  components:
-    - build-tools-19.0.2
-
