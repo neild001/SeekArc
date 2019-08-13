@@ -25,14 +25,6 @@ package com.triggertrap.sample;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
-
-import com.triggertrap.seekarc.SeekArc;
-import com.triggertrap.seekarc.SeekArc.OnSeekArcChangeListener;
 
 /**
  * Sample to proove the PR for including the seekarc in a scroll view works as expected
