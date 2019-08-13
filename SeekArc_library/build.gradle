@@ -1,14 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 29
 
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 23
+        minSdkVersion 21
+        targetSdkVersion 29
         versionCode 2
-        versionName "1.1"
+        versionName "1.2"
     }
     buildTypes {
         release {
@@ -27,11 +26,13 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
-
-        instrumentTest.setRoot('tests')
+    }
+    compileOptions {
+        targetCompatibility = 1.8
+        sourceCompatibility = 1.8
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    api 'androidx.appcompat:appcompat:1.0.2'
 }

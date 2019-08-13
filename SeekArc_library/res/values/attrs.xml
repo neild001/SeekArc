@@ -29,7 +29,7 @@
         <attr name="max" format="integer" />
         <attr name="progressWidth" format="dimension" />
         <attr name="arcWidth" format="dimension" />
-        <attr name="progress" format="integer" />
+        <attr name="progression" format="integer" />
         <attr name="rotation" format="integer" />
         <attr name="startAngle" format="integer" />
         <attr name="sweepAngle" format="integer" />
@@ -40,9 +40,9 @@
         <attr name="clockwise" format="boolean" />
         <attr name="enabled" format="boolean" />
     </declare-styleable>
-    
+
     <declare-styleable name="SeekArcTheme">
-        <attr name="seekArcStyle" format="reference"></attr>        
+        <attr name="seekArcStyle" format="reference" />
     </declare-styleable>
 
 </resources>
