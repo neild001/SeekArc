@@ -43,12 +43,13 @@ open class SimpleActivity : Activity() {
     private var mSeekArc: SeekArc? = null
     private var mSeekArcProgress: TextView? = null
 
-    protected open val layoutFile: Int
-        get() = R.layout.holo_sample
+    open fun getLayoutFile(): Int {
+        return R.layout.holo_sample
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layoutFile)
+        setContentView(getLayoutFile())
 
         mSeekArc = seekArc
         mSeekArcProgress = seekArcProgress
@@ -167,7 +168,6 @@ open class SimpleActivity : Activity() {
             mSeekArc!!.isEnabled = isChecked
             mSeekArc!!.invalidate()
         }
-
     }
 
 }
