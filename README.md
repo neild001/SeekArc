@@ -62,13 +62,22 @@ Now add a library dependency (remember to check for latest release)
 
 ```groovy
     dependencies {
-        compile 'com.github.Triggertrap:SeekArc:v1.1'
+        implementation 'com.github.IgorGanapolsky:SeekArc:v1.2.0'
     }
 ```
 
 
 
-#Recent changes 
+#Recent changes
+
+## Version 1.2.0
+This library is now fully compatible with 2019 standards.
+
+* Java code has been converted to Kotlin.
+* AndroidX libs are used, along with latest Gradle deps.
+* Additionally, static analysis Lint was run to clean up the code.
+* minSdk version is now 21.
+* Fixed issue in attrs.xml where `progress` needed to be renamed to avoid conflict with Android styles.
 
 ## Version 1.1
 After a long hiatus we've recently integrated many of the PRs/changes submitted by others so a big thanks for all the contributions. We'll endevour to respond to PRs and updates quicker in future. The following changes have been included in v1.1.
