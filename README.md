@@ -1,3 +1,5 @@
+[![](https://jitci.com/gh/IgorGanapolsky/SeekArc/svg)](https://jitci.com/gh/IgorGanapolsky/SeekArc)
+
 SeekArc
 =======
 

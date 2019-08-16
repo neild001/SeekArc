@@ -44,6 +44,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.IgorGanapolsky:SeekArc:v1.2'
+    implementation project(':SeekArc_library')
     implementation 'androidx.appcompat:appcompat:1.0.2'
 }

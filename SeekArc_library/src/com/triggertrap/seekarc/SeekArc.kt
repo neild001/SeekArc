@@ -98,8 +98,7 @@ class SeekArc : View {
     /**
      * Will the progress increase clockwise or anti-clockwise
      */
-    private var isClockwise = true
-
+    var isClockwise = true
 
     /**
      * is the control enabled/touchable
@@ -172,7 +171,7 @@ class SeekArc : View {
             invalidate()
         }
 
-    internal interface OnSeekArcChangeListener {
+    interface OnSeekArcChangeListener {
 
         /**
          * Notification that the progress level has changed. Clients can use the
@@ -230,7 +229,7 @@ class SeekArc : View {
         // Defaults, may need to link this into theme settings
         var arcColor = res.getColor(R.color.progress_gray)
         var progressColor = res.getColor(R.color.default_blue_light)
-        val thumbHalfheight: Int
+        val thumbHalfHeight: Int
         val thumbHalfWidth: Int
         mThumb = res.getDrawable(R.drawable.seek_arc_control_selector)
         // Convert progress width to pixels for current density
@@ -250,11 +249,11 @@ class SeekArc : View {
             }
 
 
-            thumbHalfheight = mThumb!!.intrinsicHeight / 2
+            thumbHalfHeight = mThumb!!.intrinsicHeight / 2
             thumbHalfWidth = mThumb!!.intrinsicWidth / 2
             mThumb!!.setBounds(
-                -thumbHalfWidth, -thumbHalfheight, thumbHalfWidth,
-                thumbHalfheight
+                -thumbHalfWidth, -thumbHalfHeight, thumbHalfWidth,
+                thumbHalfHeight
             )
 
             max = a.getInteger(R.styleable.SeekArc_max, max)
@@ -522,7 +521,7 @@ class SeekArc : View {
      * @param onSeekArcChangeListener The seek bar notification listener
      * @see SeekArc.OnSeekArcChangeListener
      */
-    internal fun setOnSeekArcChangeListener(onSeekArcChangeListener: OnSeekArcChangeListener) {
+    fun setOnSeekArcChangeListener(onSeekArcChangeListener: OnSeekArcChangeListener) {
         mOnSeekArcChangeListener = onSeekArcChangeListener
     }
 
@@ -537,7 +536,7 @@ class SeekArc : View {
         }
     }
 
-    private fun setTouchInSide(isEnabled: Boolean) {
+    fun setTouchInSide(isEnabled: Boolean) {
         val thumbHalfHeight = mThumb!!.intrinsicHeight / 2
         val thumbHalfWidth = mThumb!!.intrinsicWidth / 2
         mTouchInside = isEnabled
@@ -558,7 +557,7 @@ class SeekArc : View {
     }
 
     companion object {
-        private val TAG = SeekArc::class.simpleName
+        private val TAG = SeekArc::class.java.simpleName
         private const val INVALID_PROGRESS_VALUE = -1
     }
 }

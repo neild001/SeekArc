@@ -23,7 +23,7 @@
             app:clockwise="true"
             app:enabled="false"
             app:max="100"
-            app:progress="80"
+            app:progression="80"
             app:progressWidth="8dp"
             app:rotation="180"
             app:roundEdges="true"
@@ -40,7 +40,7 @@
             app:clockwise="true"
             app:enabled="false"
             app:max="100"
-            app:progress="30"
+            app:progression="30"
             app:progressWidth="8dp"
             app:rotation="180"
             app:roundEdges="true"
@@ -48,7 +48,6 @@
             app:sweepAngle="300" />
 
     </LinearLayout>
-
 
     <TextView
         android:layout_width="match_parent"
