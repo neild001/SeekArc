@@ -62,7 +62,7 @@ Now add a library dependency (remember to check for latest release)
 
 ```groovy
     dependencies {
-        implementation 'com.github.IgorGanapolsky:SeekArc:v1.2.0'
+        implementation 'com.github.IgorGanapolsky:SeekArc:v1.2.1'
     }
 ```
 
