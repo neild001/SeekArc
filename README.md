@@ -70,6 +70,14 @@ Now add a library dependency (remember to check for latest release)
 
 #Recent changes
 
+## Version 1.2.1
+More improvements to the codebase as well as sample.
+
+* Lint Fixes. 
+* Gradle update. 
+* Remove unused files. 
+* Bump versions.
+
 ## Version 1.2.0
 This library is now fully compatible with 2019 standards.
 
@@ -78,24 +86,6 @@ This library is now fully compatible with 2019 standards.
 * Additionally, static analysis Lint was run to clean up the code.
 * minSdk version is now 21.
 * Fixed issue in attrs.xml where `progress` needed to be renamed to avoid conflict with Android styles.
-
-## Version 1.1
-After a long hiatus we've recently integrated many of the PRs/changes submitted by others so a big thanks for all the contributions. We'll endevour to respond to PRs and updates quicker in future. The following changes have been included in v1.1.
- 
-* converted to gradle
-* latest Android SDK/tools   
-* removed dependency on color that holo blue that caused issues on API < 14. 
-* changes to make compatible with scroll view changes including example in sample app
-* added 'enabled' option that if set to false disables touch and visibility of the thumbnail  
-* set color progress and arc programmatically
-* mProgress typo
-* fixed setting progress via xml 
-* sample updates to show some of the new functionality
-* readme and jitpack.io notes
-
-## Version 1.0
-
-* init release
 
 # Sample Project
 
