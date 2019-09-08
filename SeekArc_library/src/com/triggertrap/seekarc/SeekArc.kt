@@ -32,6 +32,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.ContextCompat
 import kotlin.math.*
 
 /**
@@ -223,15 +224,14 @@ class SeekArc : View {
     private fun init(context: Context, attrs: AttributeSet?, defStyle: Int) {
 
         Log.d(TAG, "Initialising SeekArc")
-        val res = resources
         val density = context.resources.displayMetrics.density
 
         // Defaults, may need to link this into theme settings
-        var arcColor = res.getColor(R.color.progress_gray)
-        var progressColor = res.getColor(R.color.default_blue_light)
+        var arcColor = ContextCompat.getColor(context, R.color.progress_gray)
+        var progressColor = ContextCompat.getColor(context, R.color.default_blue_light)
         val thumbHalfHeight: Int
         val thumbHalfWidth: Int
-        mThumb = res.getDrawable(R.drawable.seek_arc_control_selector)
+        mThumb = ContextCompat.getDrawable(context, R.drawable.seek_arc_control_selector)
         // Convert progress width to pixels for current density
         mProgressWidth = (mProgressWidth * density).toInt()
 
@@ -257,7 +257,7 @@ class SeekArc : View {
             )
 
             max = a.getInteger(R.styleable.SeekArc_max, max)
-            mProgress = a.getInteger(R.styleable.SeekArc_progression, mProgress)
+            mProgress = a.getInteger(R.styleable.SeekArc_progressValue, mProgress)
             mProgressWidth = a.getDimension(
                 R.styleable.SeekArc_progressWidth, mProgressWidth.toFloat()
             ).toInt()

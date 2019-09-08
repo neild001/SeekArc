@@ -28,8 +28,8 @@
         <attr name="thumbOffset" format="dimension" />
         <attr name="max" format="integer" />
         <attr name="progressWidth" format="dimension" />
+        <attr name="progressValue" format="integer" />
         <attr name="arcWidth" format="dimension" />
-        <attr name="progression" format="integer" />
         <attr name="rotation" format="integer" />
         <attr name="startAngle" format="integer" />
         <attr name="sweepAngle" format="integer" />

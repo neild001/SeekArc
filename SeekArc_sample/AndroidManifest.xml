@@ -40,18 +40,18 @@
         </activity>
         <activity
             android:name="com.triggertrap.sample.SimpleActivity"
-            android:label="@string/title_activity_simple"></activity>
+            android:label="@string/title_activity_simple" />
 
         <activity
             android:name="com.triggertrap.sample.ScrollViewActivity"
-            android:label="@string/title_activity_scrollview"></activity>
+            android:label="@string/title_activity_scrollview" />
 
         <activity
             android:name="com.triggertrap.sample.DisabledActivity"
-            android:label="@string/title_activity_disabled"></activity>
+            android:label="@string/title_activity_disabled" />
         <activity
             android:name="com.triggertrap.sample.CustomActivity"
-            android:label="@string/title_activity_custom"></activity>
+            android:label="@string/title_activity_custom" />
     </application>
 
 </manifest>

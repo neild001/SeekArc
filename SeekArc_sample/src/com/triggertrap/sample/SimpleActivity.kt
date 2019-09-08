@@ -148,23 +148,23 @@ open class SimpleActivity : Activity() {
             }
         })
 
-        mRoundedEdges.setOnCheckedChangeListener { buttonView, isChecked ->
+        mRoundedEdges.setOnCheckedChangeListener { _, isChecked ->
             mSeekArc!!.setRoundedEdges(isChecked)
             mSeekArc!!.invalidate()
         }
 
-        mTouchInside.setOnCheckedChangeListener { buttonView, isChecked ->
+        mTouchInside.setOnCheckedChangeListener { _, isChecked ->
             mSeekArc!!.setTouchInSide(
                 isChecked
             )
         }
 
-        mClockwise.setOnCheckedChangeListener { buttonView, isChecked ->
+        mClockwise.setOnCheckedChangeListener { _, isChecked ->
             mSeekArc!!.isClockwise = isChecked
             mSeekArc!!.invalidate()
         }
 
-        mEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
+        mEnabled.setOnCheckedChangeListener { _, isChecked ->
             mSeekArc!!.isEnabled = isChecked
             mSeekArc!!.invalidate()
         }

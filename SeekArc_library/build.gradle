@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
 
 repositories {
     mavenCentral()
@@ -9,17 +8,14 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
-group = 'com.github.IgorGanapolsky'
-version = '1.0'
-
 android {
     compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 2
-        versionName "1.2"
+        versionCode 3
+        versionName "1.2.1"
     }
     buildTypes {
         release {
@@ -46,7 +42,7 @@ android {
 }
 
 dependencies {
-    api 'androidx.appcompat:appcompat:1.0.2'
-    implementation "androidx.core:core-ktx:1.0.2"
+    api 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.core:core-ktx:1.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
